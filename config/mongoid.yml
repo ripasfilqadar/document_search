@@ -1,0 +1,65 @@
+development:
+  clients:
+    default:
+      database: <%= ENV['MONGOID_DATABASE'] %>_development
+      hosts:
+        - <%= ENV['MONGOID_HOST'] %>
+    log:
+      database: <%= ENV['MONGOID_LOG_DATABASE'] %>_development
+      hosts:
+        - <%= ENV['MONGOID_HOST'] %>
+  options:
+    raise_not_found_error: false
+
+test:
+  clients:
+    default:
+      database: <%= ENV['MONGOID_DATABASE'] %>_test
+      hosts:
+        - <%= ENV['MONGOID_HOST'] %>
+    log:
+      database: <%= ENV['MONGOID_LOG_DATABASE'] %>_test
+      hosts:
+        - <%= ENV['MONGOID_HOST'] %>
+  options:
+    raise_not_found_error: false
+
+staging:
+  clients:
+    default:
+      database: <%= ENV['MONGOID_DATABASE'] %>
+      hosts:
+        - <%= ENV['MONGOID_HOST'] %>
+    log:
+      database: <%= ENV['MONGOID_LOG_DATABASE'] %>
+      hosts:
+        - <%= ENV['MONGOID_HOST'] %>
+  options:
+      raise_not_found_error: false
+
+production:
+  clients:
+    default:
+      database: <%= ENV['MONGOID_DATABASE'] %>
+      hosts:
+        <%= (ENV['MONGOID_HOSTS'] || '').split(';').each{ |host| "- #{host}" }%>
+      options:
+        user: <%= ENV['MONGOID_USERNAME'] %>
+        password: <%= ENV['MONGOID_PASSWORD'] %>
+        connect_timeout: 1
+        socket_timeout: 5
+        read:
+          mode: :secondary_preferred
+    log:
+      database: <%= ENV['MONGOID_LOG_DATABASE'] %>
+      hosts:
+        <%= (ENV['MONGOID_LOG_HOSTS'] || '').split(';').each{ |host| "- #{host}" }%>
+      options:
+        user: <%= ENV['MONGOID_LOG_USERNAME'] %>
+        password: <%= ENV['MONGOID_LOG_PASSWORD'] %>
+        connect_timeout: 1
+        socket_timeout: 5
+        read:
+          mode: :secondary_preferred
+  options:
+    raise_not_found_error: false

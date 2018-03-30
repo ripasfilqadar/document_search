@@ -1,0 +1,12 @@
+!!!5
+%html{lang: 'id-ID', prefix: 'og: http://ogp.me/ns# fb: http://www.facebook.com/2008/fbml'}
+  %head
+    = stylesheet_link_tag "application", data: { turbolinks_track: 'reload'}
+    %meta{charset: 'utf-8'}
+      %body#main-container.container{data: { current_user: "#{current_user && current_user.id.to_s(36)}", current_user_email: "#{current_user && current_user.email}", session_id: session["session_id"]}}
+        .row
+          #sidebar.row.col-xs-12
+            = render 'header'
+          #content.col-xs-9
+            = yield 
+        .footer

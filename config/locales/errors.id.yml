@@ -1,0 +1,8 @@
+id:
+  user:
+    user_exist: 'User sudah ada'
+    password_confirmation_not_match: 'Password konfirmasi tidak sama'
+    name_must_present: 'Nama harus diisi'
+    email_must_present: 'Email harus diisi'
+    password_must_present: 'Password harus diisi'
+    password_confirmation_must_present: 'Konfirmas password harus diisi'

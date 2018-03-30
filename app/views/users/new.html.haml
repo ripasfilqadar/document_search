@@ -1,0 +1,13 @@
+= simple_form_for @user, url: users_path, wrapper: :inline_form, html: { class: 'form-inline' } do |f|
+  = f.error_notification
+
+  = f.input :email, placeholder: 'Email'
+  = f.input :name, placeholder: 'Nama'
+  = f.input :username, placeholder: 'Username'
+  = f.input :password, placeholder: 'Password'
+  = f.input :password_confirmation, placeholder: 'Confirm Password'
+
+  = f.button :submit
+
+= flash[:notice]
+= flash[:alert]
